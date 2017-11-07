@@ -13,8 +13,9 @@ import {Routes, RouterModule} from "@angular/router";
 const appRoutes: Routes = [
   {path:'', component: LugaresComponent},
   {path:'lugares', component: LugaresComponent},
-  {path:'detalle', component: DetalleComponent},
+  {path:'detalles/:id', component: DetalleComponent},
 ];
+//{path:'detalles/:id/:action', component: DetalleComponent}, En caso que se quiera enviar mas de un parametro
 
 @NgModule({
   declarations: [
