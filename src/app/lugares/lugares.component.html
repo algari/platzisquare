@@ -11,7 +11,7 @@
           <h2>Lugares cercanos</h2>
           <ul class="list-group">
               <ng-container *ngFor="let i of items">
-                <a routerLink="/detalles/{{i.id}}"><li class="list-group-item" *ngIf="i.visible">{{i.nombre}}</li></a>
+                <a routerLink="/detalles/{{i.id}}" [queryParams]="{action:'view',referer:'google'}"><li class="list-group-item" *ngIf="i.visible">{{i.nombre}}</li></a>
               </ng-container>
           </ul>
       </div>
@@ -35,4 +35,4 @@
     </li></a>
   </ng-container>
 </ul> -->
-<!-- Capitulo 21 -->
+<!-- Capitulo 28 -->

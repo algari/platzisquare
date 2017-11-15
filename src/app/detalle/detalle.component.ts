@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { LugaresService } from '../services/lugares.service';
 
 @Component({
   selector: 'app-detalle',
@@ -8,12 +9,20 @@ import { ActivatedRoute} from '@angular/router';
 })
 export class DetalleComponent implements OnInit {
 
-  constructor(private roue:ActivatedRoute) 
-  { 
-    console.log(this.roue.snapshot.params['id']);
+  id = null;
+  lugar:any = {};
+  constructor(private route: ActivatedRoute, lugaresS:LugaresService) {
+    console.log(this.route.snapshot.params['id']);
+    console.log(this.route.snapshot.queryParams['action']);
+    console.log(this.route.snapshot.queryParams['referer']);
+    this.id = this.route.snapshot.params['id'];
+
+    this.lugar = lugaresS.buscarLugar(this.id);
   }
 
   ngOnInit() {
   }
+
+  
 
 }
