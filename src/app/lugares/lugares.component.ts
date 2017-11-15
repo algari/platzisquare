@@ -14,8 +14,22 @@ export class LugaresComponent implements OnInit {
   lat: number = 4.5486339;
   lng: number = -75.6745766;
 
-  constructor(lugaresS:LugaresService) {
-    this.items = lugaresS.getLugares();
+  lugares = null;
+  constructor(private lugaresS:LugaresService) {
+    //this.lugares =  lugaresS.getLugares();
+    this.lugaresS.getLugares().subscribe(
+      (data) => {
+        //debugger;//Para hacer debug en el codigo
+        this.lugares = data;
+      },
+      err => {
+        console.error(err);
+      },
+      () => {
+        console.log('Finished getAllGames');
+
+      }
+    )
    }
 
   items = null;

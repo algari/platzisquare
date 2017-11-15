@@ -11,10 +11,12 @@ import { DetalleComponent } from './detalle/detalle.component';
 import {Routes, RouterModule} from "@angular/router";
 import { ContactoComponent } from './contacto/contacto.component';
 import { LugaresService } from './services/lugares.service';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { NewPlaceComponent } from './new-place/new-place.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDwo0Es0wcDeQ9693mKss5IofGG60OlnK0",
@@ -32,6 +34,7 @@ const appRoutes: Routes = [
   {path:'lugares', component: LugaresComponent},
   {path:'detalles/:id', component: DetalleComponent},
   {path:'contacto', component: ContactoComponent},
+  {path:'crear', component: NewPlaceComponent},
 ];
 //{path:'detalles/:id/:action', component: DetalleComponent}, En caso que se quiera enviar mas de un parametro
 
@@ -42,7 +45,8 @@ const appRoutes: Routes = [
     ContarClicksDirective,
     LugaresComponent,
     DetalleComponent,
-    ContactoComponent
+    ContactoComponent,
+    NewPlaceComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +57,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    FormsModule,
   ],
   providers: [LugaresService],
   bootstrap: [AppComponent]
