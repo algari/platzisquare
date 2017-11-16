@@ -12,6 +12,15 @@
     <input id="plan "type="text" class="form-control" [(ngModel)]="place.plan">
     <label for="descripcion">Descripción</label>
     <textarea id="descripcion "type="text" class="form-control" [(ngModel)]="place.descripcion"></textarea>
+
+    <h3>Datos de dirección</h3>
+    <label for="plan">Calle y numero</label>
+    <input id="plan "type="text" class="form-control" [(ngModel)]="place.calle">
+    <label for="plan">Ciudad</label>
+    <input id="plan "type="text" class="form-control" [(ngModel)]="place.cuidad">
+    <label for="plan">Pais</label>
+    <input id="plan "type="text" class="form-control" [(ngModel)]="place.pais">
+
     <hr />
     <a class="btn btn-primary" (click)="savePlace()">Enviar</a>
     <a class="btn btn-default" routerLink="/lugares">Cancelar</a>  

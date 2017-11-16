@@ -1,7 +1,7 @@
 <!-- this creates a google map on the page with the given lat/lng from -->
 <!-- the component as the initial center of the map: -->
 <agm-map [latitude]="lat" [longitude]="lng">
-  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  <agm-marker *ngFor="let l of lugares" [latitude]="l.lat" [longitude]="l.lng"></agm-marker>
 </agm-map>
 
 <hr/>
@@ -9,11 +9,11 @@
   <div class="row" >
       <div class="col-md-8">
           <h2>Lugares cercanos</h2>
-          <a class="btn btn-primary" routerLink="/crear">Crear nuevo Negocio</a>
+          <a class="btn btn-primary" routerLink="/crear/new">Crear nuevo Negocio</a>
           <ul class="list-group">
               <ng-container *ngFor="let i of lugares">
                   <!-- <a routerLink="/detalles/{{i.id}}" [queryParams]="{action:'view',referer:'google'}"><li class="list-group-item" *ngIf="i.visible">{{i.nombre}}</li></a> -->
-                <a routerLink="/detalles/{{i.id}}" [queryParams]="{action:'view',referer:'google'}"><li class="list-group-item">{{i.nombre}}</li></a>
+                <a routerLink="/crear/{{i.id}}"><li class="list-group-item">{{i.nombre}}</li></a>
               </ng-container>
           </ul>
       </div>
@@ -37,4 +37,5 @@
     </li></a>
   </ng-container>
 </ul> -->
-<!-- Capitulo 28 -->
+<!-- https://angular-maps.com/ -->
+<!-- Capitulo 36 -->

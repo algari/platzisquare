@@ -18,6 +18,8 @@ import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/dat
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { NewPlaceComponent } from './new-place/new-place.component';
 
+import {HttpModule} from '@angular/http';
+
 export const firebaseConfig = {
   apiKey: "AIzaSyDwo0Es0wcDeQ9693mKss5IofGG60OlnK0",
   authDomain: "platzisquare-1510005249276.firebaseapp.com",
@@ -34,7 +36,7 @@ const appRoutes: Routes = [
   {path:'lugares', component: LugaresComponent},
   {path:'detalles/:id', component: DetalleComponent},
   {path:'contacto', component: ContactoComponent},
-  {path:'crear', component: NewPlaceComponent},
+  {path:'crear/:id', component: NewPlaceComponent},
 ];
 //{path:'detalles/:id/:action', component: DetalleComponent}, En caso que se quiera enviar mas de un parametro
 
@@ -51,7 +53,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDSsV0Cqc-XF6R57tHfjQXwtx3VCFEeJsM'
+      apiKey: ' AIzaSyBJAMjtE4S9udh93olvFaWxQeQkc_uphS8 '
     }),
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
@@ -59,6 +61,7 @@ const appRoutes: Routes = [
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     FormsModule,
+    HttpModule
   ],
   providers: [LugaresService],
   bootstrap: [AppComponent]

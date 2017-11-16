@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LugaresService } from '../services/lugares.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-lugares',
@@ -14,13 +15,14 @@ export class LugaresComponent implements OnInit {
   lat: number = 4.5486339;
   lng: number = -75.6745766;
 
-  lugares = null;
+  lugares = [];
   constructor(private lugaresS:LugaresService) {
     //this.lugares =  lugaresS.getLugares();
     this.lugaresS.getLugares().subscribe(
-      (data) => {
+      (data:any[]) => {
         //debugger;//Para hacer debug en el codigo
-        this.lugares = data;
+        //Object to array
+        this.lugares = Object.keys(data).map(function (key) { return data[key]; });
       },
       err => {
         console.error(err);
