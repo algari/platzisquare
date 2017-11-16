@@ -21,14 +21,16 @@ export class LugaresComponent implements OnInit {
     this.lugaresS.getLugares().subscribe(
       (data:any[]) => {
         //debugger;//Para hacer debug en el codigo
+        //this.lugares = data;
         //Object to array
         this.lugares = Object.keys(data).map(function (key) { return data[key]; });
       },
       err => {
         console.error(err);
+        alert(`Error al obtener los lugares ${err}`)
       },
       () => {
-        console.log('Finished getAllGames');
+        console.log('Finished getAllPlaces');
 
       }
     )

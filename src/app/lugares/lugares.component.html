@@ -13,7 +13,16 @@
           <ul class="list-group">
               <ng-container *ngFor="let i of lugares">
                   <!-- <a routerLink="/detalles/{{i.id}}" [queryParams]="{action:'view',referer:'google'}"><li class="list-group-item" *ngIf="i.visible">{{i.nombre}}</li></a> -->
-                <a routerLink="/crear/{{i.id}}"><li class="list-group-item">{{i.nombre}}</li></a>
+                <a routerLink="/crear/{{i.id}}">
+                  <li class="list-group-item">{{i.nombre|uppercase}}
+                    <br/>
+                    <small>Creado: {{i.id | date:'medium' | uppercase}}</small>
+                    <!-- DatePipe -->
+                    <br/>
+                    {{'12234.121231231' | number:'1.2-2' }}
+                    <!-- DecimalPipe -->
+                  </li>
+                </a>
               </ng-container>
           </ul>
       </div>
