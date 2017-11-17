@@ -5,7 +5,8 @@
 </agm-map>
 
 <hr/>
-<div id="cuadrado" [@contenedorAnimable]="state"></div>
+<div id="cuadrado" [@contenedorAnimable]="state" (@contenedorAnimable.start)="animacionInicia($event)"
+(@contenedorAnimable.done)="animacionTermina($event)" ></div>
 <a class="btn btn-default" (click)="animar()">Animar!</a>
 <div class="container">
   <div class="row" >
@@ -29,8 +30,16 @@
               </ng-container>
           </ul>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4"  [@contenedorAnimable]="state">
           <h2>Destacados</h2>
+          <ng-container *ngFor="let i of lugares">
+            <div class="bg-danger padding" *ngIf="i.plan == 'pagado'">
+              <a routerLink="/crear/{{i.id}}"><h3>{{i.nombre|uppercase}}</h3></a>
+              <small>Creado: {{i.id | date:'medium' | uppercase}}</small>
+              <p [innerHtml]="i.descripcion | linkifystr"></p>
+            </div>
+          
+        </ng-container>
       </div>
   </div>
 

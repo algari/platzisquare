@@ -24,10 +24,19 @@ export class LugaresComponent implements OnInit {
 
   title = 'PlatziSquare';
 
-  state = 'final';
+  state = 'incial';
 
   animar(){
     this.state = (this.state == 'final') ? 'inicial' : 'final'
+  }
+
+  animacionTermina(e){
+    console.log('Terminado'+e);
+    
+  }
+
+  animacionInicia(e){
+    console.log('Inicia '+e);
   }
 
   //Home
@@ -43,6 +52,7 @@ export class LugaresComponent implements OnInit {
         //this.lugares = data;
         //Object to array
         this.lugares = Object.keys(data).map(function (key) { return data[key]; });
+        this.state = 'final';
       },
       err => {
         console.error(err);
