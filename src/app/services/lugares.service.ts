@@ -30,14 +30,14 @@ export class LugaresService {
   }
 
   public getLugar(id){
-    //return this.afBD.object(`places/${id}`).valueChanges();
-    console.log(id);
+    return this.afBD.object(`places/${id}`).valueChanges();
+    // console.log(id);
     
-    const headers = new Headers({
-      'Content-Type': 'application/json'
-    });
-    const options = new RequestOptions({headers: headers});
-    return this.http.get(this.API_URL+"/"+id, options).map(response => response.json());
+    // const headers = new Headers({
+    //   'Content-Type': 'application/json'
+    // });
+    // const options = new RequestOptions({headers: headers});
+    // return this.http.get(this.API_URL+"/"+id, options).map(response => response.json());
   }
 
   public buscarLugar(id) {

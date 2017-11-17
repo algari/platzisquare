@@ -19,6 +19,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { NewPlaceComponent } from './new-place/new-place.component';
 
 import {HttpModule} from '@angular/http';
+import { LinkifystrPipe } from './pipes/linkifyjs.pipe';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDwo0Es0wcDeQ9693mKss5IofGG60OlnK0",
@@ -48,7 +49,8 @@ const appRoutes: Routes = [
     LugaresComponent,
     DetalleComponent,
     ContactoComponent,
-    NewPlaceComponent
+    NewPlaceComponent,
+    LinkifystrPipe
   ],
   imports: [
     BrowserModule,
