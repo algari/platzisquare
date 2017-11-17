@@ -20,6 +20,10 @@ import { NewPlaceComponent } from './new-place/new-place.component';
 
 import {HttpModule} from '@angular/http';
 import { LinkifystrPipe } from './pipes/linkifyjs.pipe';
+import { LoginComponent } from './login/login.component';
+import { RegistroComponent } from './registro/registro.component';
+import { AuthService } from './services/auth.service';
+import { MyGuardService } from './services/my-guard.service';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDwo0Es0wcDeQ9693mKss5IofGG60OlnK0",
@@ -37,7 +41,9 @@ const appRoutes: Routes = [
   {path:'lugares', component: LugaresComponent},
   {path:'detalles/:id', component: DetalleComponent},
   {path:'contacto', component: ContactoComponent},
-  {path:'crear/:id', component: NewPlaceComponent},
+  {path:'crear/:id', component: NewPlaceComponent,canActivate:[MyGuardService]},
+  {path:'login', component: LoginComponent},
+  {path:'registro', component: RegistroComponent},
 ];
 //{path:'detalles/:id/:action', component: DetalleComponent}, En caso que se quiera enviar mas de un parametro
 
@@ -50,7 +56,9 @@ const appRoutes: Routes = [
     DetalleComponent,
     ContactoComponent,
     NewPlaceComponent,
-    LinkifystrPipe
+    LinkifystrPipe,
+    LoginComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +73,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule
   ],
-  providers: [LugaresService],
+  providers: [LugaresService,AuthService,MyGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
-import { AuthService } from './services/auth.service';
+import { Injectable } from '@angular/core';
+import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
+import { AuthService } from './auth.service';
 
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
-})
-export class AppComponent {
+@Injectable()
+export class MyGuardService implements CanActivate{
   
+  canActivate(){
+    return this.loggedin;
+  }
+
   loggedin = false;
   constructor(private auth:AuthService) {
     this.auth.isLogged().subscribe(result=>{
@@ -20,4 +21,5 @@ export class AppComponent {
       this.loggedin = false;
     })
   }
+
 }
