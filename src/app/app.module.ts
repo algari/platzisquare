@@ -71,7 +71,8 @@ const appRoutes: Routes = [
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    ReactiveFormsModule
   ],
   providers: [LugaresService,AuthService,MyGuardService],
   bootstrap: [AppComponent]

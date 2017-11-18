@@ -70,4 +70,8 @@ export class AuthService {
         return token;
       });
   }
+
+  public getUser(){
+    return this.angularFireAuth.auth;
+  }
 }

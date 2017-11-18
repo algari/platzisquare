@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { LugaresService } from '../services/lugares.service';
 import { ActivatedRoute } from '@angular/router';
 
+import {Observable} from 'rxjs'
+import 'rxjs/Rx'
+import { FormControl } from '@angular/forms';
+import { Http } from '@angular/http';
+
+
 @Component({
   selector: 'app-new-place',
   templateUrl: './new-place.component.html',
@@ -11,8 +17,13 @@ export class NewPlaceComponent implements OnInit {
 
   place :any = null;
   id:any = null;
+
+  private searchField: FormControl;
+  results$:Observable<any>;
+
   constructor(private lugaresS:LugaresService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+  private http:Http) {
     this.id = this.route.snapshot.params['id'];
     if(this.id !='new'){
       this.lugaresS.getLugar(this.id).subscribe(data =>{
@@ -23,10 +34,16 @@ export class NewPlaceComponent implements OnInit {
          console.error(err);
        },
        () => {
-         console.log('Finished getAllGames');
- 
+         console.log('Finished getLugar');
      })
     }
+    const URL = 'https://maps.google.com/maps/api/geocode/json';
+    this.searchField = new FormControl();
+    this.results$ = this.searchField.valueChanges
+      .debounceTime(500)
+      .switchMap(query => this.http.get(`${URL}?address=${query}`))
+      .map(response => response.json())
+      .map(response => response.results);
    }
 
   ngOnInit() {

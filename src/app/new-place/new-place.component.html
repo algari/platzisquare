@@ -1,27 +1,36 @@
 <div class="well">
-    <a routerLink="/lugares">Lugares</a> /new-place
-  </div>
-  <div class="container">
-    <label for="name">Nombre</label>
-    <input id="name "type="text" class="form-control" [(ngModel)]="place.nombre"/>
-    <label for="distancia">Distancia</label>
-    <input id="distancia "type="text" class="form-control" [(ngModel)]="place.distancia">
-    <label for="cercania">Cercania</label>
-    <input id="cercania "type="text" class="form-control" [(ngModel)]="place.cercania">
-    <label for="plan">Plan</label>
-    <input id="plan "type="text" class="form-control" [(ngModel)]="place.plan">
-    <label for="descripcion">Descripción</label>
-    <textarea id="descripcion "type="text" class="form-control" [(ngModel)]="place.descripcion"></textarea>
+  <a routerLink="/lugares">Lugares</a> /new-place
+</div>
+<div class="container">
+  <label for="name">Nombre</label>
+  <input id="name " type="text" class="form-control" [(ngModel)]="place.nombre" />
+  <label for="distancia">Distancia</label>
+  <input id="distancia " type="text" class="form-control" [(ngModel)]="place.distancia">
+  <label for="cercania">Cercania</label>
+  <input id="cercania " type="text" class="form-control" [(ngModel)]="place.cercania">
+  <label for="plan">Plan</label>
+  <input id="plan " type="text" class="form-control" [(ngModel)]="place.plan">
+  <label for="descripcion">Descripción</label>
+  <textarea id="descripcion " type="text" class="form-control" [(ngModel)]="place.descripcion"></textarea>
 
-    <h3>Datos de dirección</h3>
-    <label for="plan">Calle y numero</label>
-    <input id="plan "type="text" class="form-control" [(ngModel)]="place.calle">
-    <label for="plan">Ciudad</label>
-    <input id="plan "type="text" class="form-control" [(ngModel)]="place.cuidad">
-    <label for="plan">Pais</label>
-    <input id="plan "type="text" class="form-control" [(ngModel)]="place.pais">
-
-    <hr />
-    <a class="btn btn-primary" (click)="savePlace()">Enviar</a>
-    <a class="btn btn-default" routerLink="/lugares">Cancelar</a>  
+  <h3>Datos de dirección</h3>
+  <div class="well">
+    <form>
+      <h3>Buscar direccion en Google Maps</h3>
+      <input type="text" class="form-control" [formControl]="searchField">
+    </form>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let result of results$ | async">{{result.formatted_address}}</li>
+    </ul>
   </div>
+  <label for="plan">Calle y numero</label>
+  <input id="plan " type="text" class="form-control" [(ngModel)]="place.calle">
+  <label for="plan">Ciudad</label>
+  <input id="plan " type="text" class="form-control" [(ngModel)]="place.cuidad">
+  <label for="plan">Pais</label>
+  <input id="plan " type="text" class="form-control" [(ngModel)]="place.pais">
+
+  <hr />
+  <a class="btn btn-primary" (click)="savePlace()">Enviar</a>
+  <a class="btn btn-default" routerLink="/lugares">Cancelar</a>
+</div>
