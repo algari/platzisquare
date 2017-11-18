@@ -3,6 +3,8 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
+import {AuthService} from "./auth.service";
+import { log } from 'util';
 
 @Injectable()
 export class LugaresService {
@@ -16,23 +18,26 @@ export class LugaresService {
   API_URL ='https://platzisquare-1510005249276.firebaseio.com/places.json';
 
   constructor(private afBD:AngularFireDatabase,
-              private http: Http      
+              private http: Http,
+              private auth:AuthService
   ) { }
 
+  
   public getLugares():Observable<Array<any>>{
     //return this.afBD.list('places/').valueChanges();
     const headers = new Headers({
       'Content-Type': 'application/json'
     });
+    console.log(this.auth.getToken);
     const options = new RequestOptions({headers: headers});
     return this.http.get(this.API_URL, options).map(response => response.json());
-    
+
   }
 
   public getLugar(id){
     return this.afBD.object(`places/${id}`).valueChanges();
     // console.log(id);
-    
+
     // const headers = new Headers({
     //   'Content-Type': 'application/json'
     // });
@@ -58,7 +63,6 @@ export class LugaresService {
 
     const options = new RequestOptions({headers: headers});
     const body = JSON.stringify(place);
-
     return this.http.post(this.API_URL,body, options).map(response => response.json());
   }
 

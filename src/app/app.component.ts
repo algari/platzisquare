@@ -7,17 +7,21 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  
+
   loggedin = false;
-  constructor(private auth:AuthService) {
-    this.auth.isLogged().subscribe(result=>{
-     if (result && result.uid) {
+  constructor(private auth: AuthService) {
+    this.auth.isLogged().subscribe(result => {
+      if (result && result.uid) {
         this.loggedin = true;
-      }else{
+      } else {
         this.loggedin = false;
       }
-    },error=>{
+    }, error => {
       this.loggedin = false;
     })
+  }
+
+  logout(){
+    this.auth.logout();
   }
 }
