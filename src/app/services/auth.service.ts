@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 @Injectable()
 export class AuthService {
 
+  token:any;
   constructor(private angularFireAuth: AngularFireAuth,
               private router:Router) {
     this.isLogged();
@@ -30,7 +31,7 @@ export class AuthService {
     this.angularFireAuth.auth.signInWithEmailAndPassword(email, password)
       .then((response) => {
         alert('Usuario Loggeado con éxito!');
-        console.log(response);
+        this.token = response.pa; 
         this.router.navigate(['lugares']);
       })
       .catch((error) => {
@@ -63,12 +64,13 @@ export class AuthService {
     this.router.navigate(['lugares']);
   }
 
-  //in authService file 
   getToken() {
-    return this.angularFireAuth.auth.currentUser.getIdToken()
-      .then(token => {
-        return token;
-      });
+    return this.getUser().currentUser.getToken(true).then((idToken)=> {
+        return idToken;
+    }).catch(function(error) {
+      console.log("Error al obtener el token "+error);
+    });
+    
   }
 
   public getUser(){

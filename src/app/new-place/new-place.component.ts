@@ -26,16 +26,18 @@ export class NewPlaceComponent implements OnInit {
   private http:Http) {
     this.id = this.route.snapshot.params['id'];
     if(this.id !='new'){
-      this.lugaresS.getLugar(this.id).subscribe(data =>{
-        //debugger;//Para hacer debug en el codigo
-         this.place=data;
-       },
-       err => {
-         console.error(err);
-       },
-       () => {
-         console.log('Finished getLugar');
-     })
+      this.place = this.lugaresS.getLugar(this.id);
+      console.log(this.place);
+    //   this.lugaresS.getLugar(this.id).subscribe(data =>{
+    //     //debugger;//Para hacer debug en el codigo
+    //      this.place=data;
+    //    },
+    //    err => {
+    //      console.error(err);
+    //    },
+    //    () => {
+    //      console.log('Finished getLugar');
+    //  })
     }
     const URL = 'https://maps.google.com/maps/api/geocode/json';
     this.searchField = new FormControl();
@@ -48,6 +50,13 @@ export class NewPlaceComponent implements OnInit {
 
   ngOnInit() {
     this.place ={};
+  }
+
+  seleccionarDir(result){
+    console.log(result);
+    this.place.calle = result.address_components[1].long_name+' '+result.address_components[0].long_name;
+    this.place.cuidad = result.address_components[4].long_name;
+    this.place.pais = result.address_components[5].long_name;
   }
 
   savePlace(){

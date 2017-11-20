@@ -20,7 +20,7 @@
       <input type="text" class="form-control" [formControl]="searchField">
     </form>
     <ul class="list-group">
-      <li class="list-group-item" *ngFor="let result of results$ | async">{{result.formatted_address}}</li>
+      <li class="list-group-item" *ngFor="let result of results$ | async" (click)="seleccionarDir(result)">{{result.formatted_address}}</li>
     </ul>
   </div>
   <label for="plan">Calle y numero</label>

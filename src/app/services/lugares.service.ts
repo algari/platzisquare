@@ -5,6 +5,8 @@ import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import {AuthService} from "./auth.service";
 import { log } from 'util';
+import { Response } from '@angular/http/src/static_response';
+import { auth } from 'firebase/app';
 
 @Injectable()
 export class LugaresService {
@@ -28,14 +30,16 @@ export class LugaresService {
     const headers = new Headers({
       'Content-Type': 'application/json'
     });
-    console.log(this.auth.getToken);
     const options = new RequestOptions({headers: headers});
-    return this.http.get(this.API_URL, options).map(response => response.json());
+    return this.http.get(this.API_URL+"?auth="+this.auth.token, options).map(response => response.json());
 
   }
 
   public getLugar(id){
-    return this.afBD.object(`places/${id}`).valueChanges();
+    let place = this.afBD.database.ref(`places/${id}`).equalTo('id',id);
+    console.log(place)
+    // return this.afBD.object(`places/${id}`).valueChanges();
+    
     // console.log(id);
 
     // const headers = new Headers({
@@ -67,6 +71,6 @@ export class LugaresService {
   }
 
   public editPlace(place){
-    this.afBD.database.ref(`places/${place.id}`).set(place);
+    //this.afBD.database.ref(`places/${place.id}`).set(place);
   }
 }

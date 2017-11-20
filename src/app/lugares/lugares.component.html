@@ -1,8 +1,8 @@
 <!-- this creates a google map on the page with the given lat/lng from -->
 <!-- the component as the initial center of the map: -->
-<agm-map [latitude]="lat" [longitude]="lng">
+<!-- <agm-map [latitude]="lat" [longitude]="lng">
   <agm-marker *ngFor="let l of lugares" [latitude]="l.lat" [longitude]="l.lng"></agm-marker>
-</agm-map>
+</agm-map> -->
 
 <hr/>
 <div id="cuadrado" [@contenedorAnimable]="state" (@contenedorAnimable.start)="animacionInicia($event)"

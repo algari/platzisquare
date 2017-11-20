@@ -10,14 +10,16 @@ export class AppComponent {
 
   loggedin = false;
   user:any=null;
+  token:any;
   constructor(private auth: AuthService) {
     this.auth.isLogged().subscribe(result => {
       if (result && result.uid) {
         this.loggedin = true;
         setTimeout(() => {
           this.user = this.auth.getUser().currentUser.email;
-        }, 500);
-      
+          
+         }, 500);
+        console.log(this.user);
       } else {
         this.loggedin = false;
       }
